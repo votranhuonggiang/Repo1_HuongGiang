@@ -4,41 +4,14 @@ import json
 import pandas as pd
 
 class FetchData:
-    """
-    A class to fetch stock data from different sources.
-
-    Methods
-    -------
-    fetch_yahoo_finance(symbol, start="2013-01-01", end="2025-02-12", interval="1d"):
-        Fetches historical stock data from Yahoo Finance.
-    fetch_vietcap(symbol, timeframe="ONE_DAY", count_back=3850, to_timestamp=1739491200):
-        Fetches historical stock data from Vietcap API.
-    """
-
     def __init__(self, max_retries=5, delay=1):
         self.max_retries = max_retries
         self.delay = delay
 
     def fetch_yahoo_finance(self, symbol, start="2013-01-01", end="2025-02-12", interval="1d"):
         """
-        Fetches historical stock data from Yahoo Finance.
+        Fetches all historical stock data from Yahoo Finance.
         Useful for global datasets (e.g., stocks in the UK).
-
-        Parameters
-        ----------
-        symbol : str
-            The stock symbol to fetch data for.
-        start : str, optional
-            The start date for the data in YYYY-MM-DD format (default is "2013-01-01").
-        end : str, optional
-            The end date for the data in YYYY-MM-DD format (default is "2025-02-12").
-        interval : str, optional
-            The data interval, e.g., "1d", "1wk", "1mo" (default is "1d").
-
-        Returns
-        -------
-        pandas.DataFrame
-            A DataFrame containing the historical stock data.
         """
         period1 = int(pd.Timestamp(start).timestamp())
         period2 = int(pd.Timestamp(end).timestamp())
@@ -70,24 +43,8 @@ class FetchData:
 
     def fetch_vietcap(self, symbol, timeframe="ONE_DAY", count_back=3850, to_timestamp=1739491200):
         """
-        Fetches historical stock data from Vietcap API.
+        Fetches all historical stock data from Vietcap API.
         Useful for Vietnamese datasets (e.g., stocks in Vietnam).
-
-        Parameters
-        ----------
-        symbol : str
-            The stock symbol to fetch data for.
-        timeframe : str, optional
-            The data timeframe (default is "ONE_DAY").
-        count_back : int, optional
-            The number of data points to fetch (default is 3850).
-        to_timestamp : int, optional
-            The end timestamp for the data in UNIX format (default is 1739491200).
-
-        Returns
-        -------
-        pandas.DataFrame
-            A DataFrame containing the historical stock data.
         """
         url = "https://trading.vietcap.com.vn/api/chart/OHLCChart/gap-chart"
         
