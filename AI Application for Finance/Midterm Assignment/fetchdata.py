@@ -75,14 +75,3 @@ class FetchData:
         df[['open', 'high', 'low', 'close', 'volume']] = df[['open', 'high', 'low', 'close', 'volume']].apply(pd.to_numeric, errors='coerce')
         
         return df.set_index('time')[['open', 'high', 'low', 'close', 'volume']].assign(index=symbol)
-
-# Example usage
-if __name__ == "__main__":
-    fetcher = FetchData()
-
-    sp500 = fetcher.fetch_yahoo_finance("^GSPC")
-    print(sp500)
-
-    vnindex = fetcher.fetch_vietcap('VNINDEX')
-    print(vnindex)
-``` ▋
